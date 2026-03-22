@@ -1,5 +1,6 @@
 package com.nicolaslab.fxeventlab.importer.application.usecase;
 
+import com.nicolaslab.fxeventlab.importer.application.exception.ImportCsvException;
 import com.nicolaslab.fxeventlab.importer.application.service.CsvProcessorService;
 import com.nicolaslab.fxeventlab.importer.domain.port.in.ImportCsvUseCase;
 import com.nicolaslab.fxeventlab.importer.domain.port.out.FileStoragePort;
@@ -16,6 +17,12 @@ public class ImportCsvUseCaseImpl implements ImportCsvUseCase {
 
     @Override
     public void execute(MultipartFile file) {
+        try {
+            storagePort.upload(file.getOriginalFilename(), file.getBytes());
 
+            csvProcessorService.process(file);
+        } catch (Exception e) {
+            throw new ImportCsvException("Falha ao importar arquivo CSV", e);
+        }
     }
 }
