@@ -1,6 +1,5 @@
 package com.nicolaslab.fxeventlab.importer.adapters.in.api;
 
-import com.nicolaslab.fxeventlab.importer.application.usecase.ImportCsvUseCaseImpl;
 import com.nicolaslab.fxeventlab.importer.domain.port.in.ImportCsvUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
